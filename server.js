@@ -9,8 +9,14 @@ import userRoutes from './routes/userRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
 import path from 'path'
+import { fileURLToPath } from 'url'; // Add this import
+
 
 dotenv.config()
+
+const __filename = fileURLToPath(import.meta.url); // Add this line
+const __dirname = path.dirname(__filename); // Add this line
+
 
 const app=express()
 //PORT
@@ -37,10 +43,12 @@ app.use('/api/v1/admin', adminRoutes)
 app.use('/api/v1/doctor', doctorRoutes)
 
 //STATIC FILE
-app.use(express.static(path.join(__dirname, './client/build')))
+app.use(express.static(path.join(__dirname, './client/build')));
+
+// Serve index.html for any other routes
 app.get("*", function (req,res) {
     res.sendFile(path.join(__dirname, './client/build/index.html'))
-})
+});
 
 app.listen(PORT,()=>{
     console.log(`App is Running in the ${process.env.NODE_MODE} Mode on the port ${PORT}`.bgMagenta)
