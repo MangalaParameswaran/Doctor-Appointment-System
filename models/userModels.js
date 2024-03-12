@@ -47,7 +47,7 @@ const userSchema= new mongoose.Schema({
     },
     img:{
         type:String,
-        default:false
+        default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe9Rhez2I79u2KwdU9xOP6V0UlQCKsAy7eCnY_CZlupQ&s"
     },
     isAdmin:{
         type:Boolean,
